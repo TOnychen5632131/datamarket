@@ -11,6 +11,10 @@ export function TutorialGuide() {
   useEffect(() => {
     // Only run on client after a slight delay to ensure UI is rendered
     setMounted(true);
+    
+    // Disable tutorial on mobile
+    if (window.innerWidth < 1024) return;
+
     const hasSeenTutorial = localStorage.getItem('datamarket_tutorial_seen');
     
     if (!hasSeenTutorial) {
