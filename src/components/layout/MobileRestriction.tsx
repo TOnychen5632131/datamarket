@@ -20,7 +20,7 @@ const translations = {
   }
 };
 
-export function MobileRestriction() {
+export function MobileRestriction({ isAuthenticated }: { isAuthenticated: boolean }) {
   const [isMobile, setIsMobile] = useState(false);
   const [lang, setLang] = useState<Lang>('zh');
 
@@ -43,7 +43,8 @@ export function MobileRestriction() {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  if (!isMobile) return null;
+  // Only restrict if user is mobile AND authenticated (using the app)
+  if (!isMobile || !isAuthenticated) return null;
 
   const t = translations[lang];
 
