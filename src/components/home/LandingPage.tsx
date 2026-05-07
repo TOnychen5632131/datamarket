@@ -175,9 +175,9 @@ export function LandingPage() {
 
         {/* Hero Right: Glassy Orb Video - Optimized for White Background */}
         <div className="relative z-0 order-1 lg:order-2 flex justify-center items-center h-[240px] md:h-[600px] lg:h-[700px] mt-2 md:mt-0">
-           {/* White Light/Glow Container behind the orb */}
-           <div className="absolute w-[240px] h-[240px] md:w-[500px] md:h-[500px] bg-white rounded-full shadow-[0_0_120px_60px_rgba(255,255,255,1)] z-0"></div>
-           <div className="absolute w-[180px] h-[180px] md:w-[400px] md:h-[400px] bg-blue-400/10 rounded-full blur-[60px] z-0"></div>
+           {/* Softened White Light/Glow Container */}
+           <div className="absolute w-[200px] h-[200px] md:w-[450px] md:h-[450px] bg-white rounded-full shadow-[0_0_150px_80px_rgba(255,255,255,1)] z-0 opacity-90"></div>
+           <div className="absolute w-[160px] h-[160px] md:w-[350px] md:h-[350px] bg-blue-400/5 rounded-full blur-[100px] z-0"></div>
 
            <div className="absolute w-full h-full lg:w-[140%] lg:h-[140%] pointer-events-none flex items-center justify-center overflow-hidden z-10">
               <div className="relative w-full h-full flex items-center justify-center">
@@ -187,8 +187,8 @@ export function LandingPage() {
                   muted 
                   playsInline 
                   style={{
-                    maskImage: 'radial-gradient(circle, rgba(0,0,0,1) 5%, rgba(0,0,0,0) 45%)',
-                    WebkitMaskImage: 'radial-gradient(circle, rgba(0,0,0,1) 5%, rgba(0,0,0,0) 45%)'
+                    maskImage: 'radial-gradient(circle, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 10%, rgba(0,0,0,0) 50%)',
+                    WebkitMaskImage: 'radial-gradient(circle, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 10%, rgba(0,0,0,0) 50%)'
                   }}
                   className="w-full h-full object-contain mix-blend-screen scale-[0.8] md:scale-[1.1] lg:scale-[1.5] filter hue-rotate-[-55deg] saturate-[300%] brightness-[1.3] contrast-[2.5] opacity-100"
                 >
