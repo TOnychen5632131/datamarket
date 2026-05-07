@@ -25,7 +25,7 @@ export function LandingPage() {
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
           <Link 
-            href="?upload=true" 
+            href="?login=true" 
             scroll={false} 
             className="w-full sm:w-auto bg-[#4a72ff] hover:bg-blue-600 text-white px-8 py-3.5 rounded-xl text-[15px] font-bold transition-all shadow-md hover:shadow-lg"
           >

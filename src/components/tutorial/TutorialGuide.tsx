@@ -4,26 +4,31 @@ import { useEffect, useState } from 'react';
 import { driver } from 'driver.js';
 import 'driver.js/dist/driver.css';
 import { Sparkles } from 'lucide-react';
+import { completeTutorial } from '@/actions/tutorial';
 
-export function TutorialGuide() {
+interface TutorialGuideProps {
+  hasSeen?: boolean;
+}
+
+export function TutorialGuide({ hasSeen }: TutorialGuideProps) {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    // Only run on client after a slight delay to ensure UI is rendered
     setMounted(true);
     
     // Disable tutorial on mobile
     if (window.innerWidth < 1024) return;
 
-    const hasSeenTutorial = localStorage.getItem('datamarket_tutorial_seen');
+    // Check both prop and local storage for extra safety
+    const hasSeenLocal = localStorage.getItem('datamarket_tutorial_seen');
     
-    if (!hasSeenTutorial) {
+    if (!hasSeen && !hasSeenLocal) {
       const timer = setTimeout(() => {
         startTutorial();
-      }, 1000);
+      }, 1500); // Slightly more delay to ensure layout is ready
       return () => clearTimeout(timer);
     }
-  }, []);
+  }, [hasSeen]);
 
   const startTutorial = () => {
     const driverObj = driver({
@@ -34,7 +39,7 @@ export function TutorialGuide() {
           element: '#tutorial-wallet',
           popover: {
             title: 'Your Wallet',
-            description: 'We know you don\'t have Stripe yet! Once you make sales, click Withdraw here to have a physical check mailed to your address.',
+            description: 'This is where you track your earnings. Once you make sales, click Withdraw here to have a physical check mailed to your address.',
             side: 'right',
             align: 'start'
           }
@@ -43,7 +48,7 @@ export function TutorialGuide() {
           element: '#tutorial-upload',
           popover: {
             title: 'Upload Data',
-            description: 'Drag and drop a JSON file here. It will trigger our Multi-Agent AI Pipeline to sanitize PII and automatically price your dataset.',
+            description: 'Drag and drop your real datasets here. Our AI Pipeline will sanitize PII and automatically price your dataset.',
             side: 'bottom',
             align: 'start'
           }
@@ -52,16 +57,16 @@ export function TutorialGuide() {
           element: '#tutorial-marketplace',
           popover: {
             title: 'The Marketplace',
-            description: 'These are mock datasets. They show you exactly what your data will look like once approved and published. Go ahead, upload a file to test it out!',
+            description: 'Browse datasets from other sellers. Real uploads will appear here alongside our template mocks.',
             side: 'top',
             align: 'start'
           }
         }
       ],
-      onDestroyStarted: () => {
-        if (!driverObj.hasNextStep()) {
-          localStorage.setItem('datamarket_tutorial_seen', 'true');
-        }
+      onDestroyStarted: async () => {
+        // Mark as seen both locally and in DB
+        localStorage.setItem('datamarket_tutorial_seen', 'true');
+        await completeTutorial();
         driverObj.destroy();
       }
     });
@@ -71,7 +76,6 @@ export function TutorialGuide() {
 
   if (!mounted) return null;
 
-  // We can also add a floating button to restart the tutorial
   return (
     <button 
       onClick={startTutorial}

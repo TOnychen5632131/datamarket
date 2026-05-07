@@ -11,6 +11,7 @@ CREATE TABLE IF NOT EXISTS public.profiles (
     avatar_url TEXT,
     role TEXT DEFAULT 'seller' CHECK (role IN ('seller', 'buyer', 'admin')),
     wallet_balance NUMERIC(10, 2) DEFAULT 0.00,
+    has_seen_tutorial BOOLEAN DEFAULT FALSE,
     created_at TIMESTAMPTZ DEFAULT NOW(),
     updated_at TIMESTAMPTZ DEFAULT NOW()
 );

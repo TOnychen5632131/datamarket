@@ -63,8 +63,27 @@ const MOCK_DATASETS = [
 
 export default async function Home() {
   const supabase = await createClient();
-  
-  // Fetch real published datasets from the database
+  const { data: { user } } = await supabase.auth.getUser();
+
+  // If not logged in, show the Landing Page
+  if (!user) {
+    return <LandingPage />;
+  }
+
+  // Fetch user profile for personal stats
+  const { data: profile } = await supabase
+    .from('profiles')
+    .select('*')
+    .eq('id', user.id)
+    .single();
+
+  // Fetch user's own datasets
+  const { data: userDatasets } = await supabase
+    .from('datasets')
+    .select('*')
+    .eq('seller_id', user.id);
+
+  // Fetch real published datasets from the database for the marketplace
   const { data: realData } = await supabase
     .from('datasets')
     .select(`*, seller:profiles(username)`)
@@ -86,25 +105,30 @@ export default async function Home() {
     scoreColor: (d.ai_score || 0) >= 80 ? 'text-emerald-600 bg-emerald-50 border-emerald-100' : 'text-amber-500 bg-amber-50 border-amber-100'
   }));
 
-  // Hybrid Data Array: Real uploads show up first, followed by the template mocks
+  // Hybrid Data Array for Marketplace: Real uploads show up first, followed by the template mocks
   const displayDatasets = [...formattedRealDatasets, ...MOCK_DATASETS];
 
-  // Dynamic Stat Calculations
-  const totalDatasets = 12 + formattedRealDatasets.length;
+  // User Specific Stat Calculations
+  const userDatasetCount = userDatasets?.length || 0;
+  const userEarnings = profile?.wallet_balance?.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) || '0.00';
   
-  // Calculate total earnings by summing mock base ($1,240.50) + real prices (assuming 1 sale each for demo)
-  const realEarnings = formattedRealDatasets.reduce((acc: number, curr: any) => acc + curr.price, 0);
-  const totalEarnings = (1240.50 + realEarnings).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  // Fetch total sales count for user's datasets
+  const { count: userSalesCount } = await supabase
+    .from('transactions')
+    .select('id', { count: 'exact', head: true })
+    .in('dataset_id', userDatasets?.map(d => d.id) || []);
+
+  const totalSales = userSalesCount || 0;
   
-  const totalSales = 28 + formattedRealDatasets.length;
-  
-  // Recalculate average AI Score
-  const allScores = displayDatasets.map(d => d.score);
-  const avgScore = (allScores.reduce((a, b) => a + b, 0) / allScores.length).toFixed(1);
+  // Average AI Score for user's own datasets
+  const userScores = (userDatasets || []).map(d => d.ai_score || 0);
+  const userAvgScore = userScores.length > 0 
+    ? (userScores.reduce((a, b) => a + b, 0) / userScores.length).toFixed(1)
+    : '0.0';
 
   return (
     <>
-      <TutorialGuide />
+      <TutorialGuide hasSeen={profile?.has_seen_tutorial} />
       <div className="max-w-[1200px] mx-auto pt-2 pb-12 space-y-8">
         
         {/* Top Section: Upload & Overview */}
@@ -114,7 +138,7 @@ export default async function Home() {
           <div id="tutorial-upload" className="col-span-4 relative z-0">
             <div className="mb-4">
             <h2 className="text-[22px] font-bold text-gray-900 tracking-tight flex items-center gap-2">
-              Welcome back, Jane! <span className="text-xl">👋</span>
+              Welcome back, {profile?.username || user.email?.split('@')[0]}! <span className="text-xl">👋</span>
             </h2>
             <p className="text-[13px] text-gray-500 mt-1">Upload, discover and sell high-quality AI training data.</p>
           </div>
@@ -134,7 +158,7 @@ export default async function Home() {
         {/* Overview Stats Panel (Span 8) */}
         <div className="col-span-8 flex flex-col">
           <div className="flex items-center justify-between mb-4 pt-1">
-            <h3 className="text-[15px] font-bold text-gray-900">Overview</h3>
+            <h3 className="text-[15px] font-bold text-gray-900">Your Overview</h3>
             <button className="text-[13px] text-blue-600 font-semibold hover:underline flex items-center gap-1">
               View Analytics <span className="text-[16px] leading-none">→</span>
             </button>
@@ -142,9 +166,9 @@ export default async function Home() {
           
           <div className="grid grid-cols-4 gap-4 mb-4">
             <GlassPanel className="p-4 flex flex-col justify-between h-[110px]" hoverEffect={false}>
-               <p className="text-[12px] font-semibold text-gray-400">Total Datasets</p>
+               <p className="text-[12px] font-semibold text-gray-400">Your Datasets</p>
                <div className="flex items-end justify-between mt-auto">
-                 <span className="text-2xl font-bold text-gray-900">{totalDatasets}</span>
+                 <span className="text-2xl font-bold text-gray-900">{userDatasetCount}</span>
                  <div className="w-8 h-8 bg-blue-50 rounded-lg flex items-center justify-center">
                     <Folder className="w-4 h-4 text-blue-500" />
                  </div>
@@ -154,9 +178,9 @@ export default async function Home() {
             <GlassPanel className="p-4 flex flex-col justify-between h-[110px]" hoverEffect={false}>
                <p className="text-[12px] font-semibold text-gray-400">Total Earnings</p>
                <div className="flex items-end justify-between mt-auto">
-                 <span className="text-2xl font-bold text-gray-900 tracking-tight">${totalEarnings}</span>
+                 <span className="text-2xl font-bold text-gray-900 tracking-tight">${userEarnings}</span>
                  <span className="text-[11px] font-bold text-emerald-600 flex items-center gap-0.5 mb-1">
-                   <TrendingUp className="w-3 h-3" /> +12.5%
+                   <TrendingUp className="w-3 h-3" /> +0%
                  </span>
                </div>
             </GlassPanel>
@@ -166,9 +190,6 @@ export default async function Home() {
                <div className="flex items-end justify-between mt-auto">
                  <span className="text-2xl font-bold text-gray-900">{totalSales}</span>
                  <div className="flex flex-col items-end">
-                    <span className="text-[11px] font-bold text-emerald-600 flex items-center gap-0.5 mb-1">
-                      <TrendingUp className="w-3 h-3" /> +8.3%
-                    </span>
                     <div className="w-8 h-8 bg-purple-50 rounded-lg flex items-center justify-center">
                         <TrendingUp className="w-4 h-4 text-purple-500" />
                     </div>
@@ -179,11 +200,8 @@ export default async function Home() {
             <GlassPanel className="p-4 flex flex-col justify-between h-[110px]" hoverEffect={false}>
                <p className="text-[12px] font-semibold text-gray-400">Avg. AI Score</p>
                <div className="flex items-end justify-between mt-auto">
-                 <span className="text-2xl font-bold text-gray-900">{avgScore}</span>
+                 <span className="text-2xl font-bold text-gray-900">{userAvgScore}</span>
                  <div className="flex flex-col items-end">
-                    <span className="text-[11px] font-bold text-emerald-600 flex items-center gap-0.5 mb-1">
-                      <TrendingUp className="w-3 h-3" /> {formattedRealDatasets.length > 0 ? '+1.2%' : '+5.6%'}
-                    </span>
                     <div className="w-8 h-8 bg-amber-50 rounded-lg flex items-center justify-center">
                         <Star className="w-4 h-4 text-amber-400" />
                     </div>
