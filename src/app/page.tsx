@@ -138,7 +138,7 @@ export default async function Home() {
           <div id="tutorial-upload" className="col-span-4 relative z-0">
             <div className="mb-4">
             <h2 className="text-[22px] font-bold text-gray-900 tracking-tight flex items-center gap-2">
-              Welcome back, {profile?.username || user.email?.split('@')[0]}! <span className="text-xl">👋</span>
+              Hello, {profile?.username || user.email?.split('@')[0]}! <span className="text-xl">👋</span>
             </h2>
             <p className="text-[13px] text-gray-500 mt-1">Upload, discover and sell high-quality AI training data.</p>
           </div>

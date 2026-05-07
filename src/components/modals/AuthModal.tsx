@@ -65,10 +65,10 @@ export function AuthModal() {
             <div className="p-6 border-b border-gray-100 flex items-center justify-between">
               <div>
                  <h2 className="text-[18px] font-bold text-gray-900 tracking-tight">
-                   {isLogin ? 'Welcome Back' : 'Create an Account'}
+                   {isLogin ? 'Sign In' : 'Create an Account'}
                  </h2>
                  <p className="text-[13px] text-gray-500 mt-0.5">
-                   {isLogin ? 'Sign in to access your datasets.' : 'Join the premier AI data marketplace.'}
+                   {isLogin ? 'Enter your credentials to access your account.' : 'Join the premier AI data marketplace.'}
                  </p>
               </div>
               <button onClick={closeModal} className="text-gray-400 hover:text-gray-600 bg-gray-50 hover:bg-gray-100 p-2 rounded-full transition-colors">
