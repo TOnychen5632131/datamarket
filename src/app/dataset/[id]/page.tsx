@@ -220,10 +220,10 @@ export default async function DatasetDetailsPage({ params }: { params: { id: str
                 </div>
                 <div className="p-6 font-mono text-[13px] leading-relaxed text-gray-700 bg-white">
                    <div className="mb-4">
-                      <span className="text-blue-600 font-bold">"instruction":</span> "Write a secure Python function to handle user session tokens using Redis..."
+                      <span className="text-blue-600 font-bold">"instruction":</span> {`"Write a secure Python function to handle user session tokens using Redis..."`}
                    </div>
                    <div>
-                      <span className="text-emerald-600 font-bold">"output":</span> "To implement secure session management in Python with Redis, you should use the `redis-py` library along with a secure token generation method like `secrets.token_urlsafe()`. Here is an example implementation...\n\n```python\nimport secrets\nimport redis\n\ndef create_session(user_id, r_client):\n    token = secrets.token_urlsafe(32)\n    r_client.setex(f'session:{token}', 3600, user_id)\n    return token\n```"
+                      <span className="text-emerald-600 font-bold">"output":</span> {`"To implement secure session management in Python with Redis, you should use the redis-py library along with a secure token generation method like secrets.token_urlsafe(). Here is an example implementation...\n\n\`\`\`python\nimport secrets\nimport redis\n\ndef create_session(user_id, r_client):\n    token = secrets.token_urlsafe(32)\n    r_client.setex(f'session:{token}', 3600, user_id)\n    return token\n\`\`\`"`}
                    </div>
                 </div>
              </GlassPanel>

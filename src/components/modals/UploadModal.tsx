@@ -11,6 +11,7 @@ import {
 import { evaluateDataset } from '@/actions/evaluateDataset';
 import { saveContactAndConfirmPrice } from '@/actions/profile';
 import { useRouter, useSearchParams } from 'next/navigation';
+import Link from 'next/link';
 
 type Step = 'idle' | 'uploading' | 'analyzing' | 'offer' | 'contact_form' | 'success';
 
@@ -436,36 +437,6 @@ export function UploadModal() {
             {/* Hidden Service Agreement Link */}
             <div className="absolute bottom-4 left-0 right-0 text-center opacity-0 hover:opacity-100 transition-opacity pointer-events-none">
                 <Link href="/terms" className="text-[10px] text-gray-300 pointer-events-auto cursor-pointer hover:underline">Service Agreement & Data Policy</Link>
-            </div>
-          </motion.div>
-        </div>
-      )}
-    </AnimatePresence>
-  );
-}
-er hover:underline">Service Agreement & Data Policy</span>
-            </div>
-          </motion.div>
-        </div>
-      )}
-    </AnimatePresence>
-  );
-}
-ysical check is printed and assigned to your address.</li>
-                         <li>3. Tracking info sent via email (if available).</li>
-                      </ul>
-                   </div>
-
-                   <button onClick={closeModal} className="w-full bg-gray-900 text-white py-4 rounded-2xl font-bold hover:bg-black transition-all">
-                     Back to Marketplace
-                   </button>
-                </div>
-              )}
-            </div>
-            
-            {/* Hidden Service Agreement Link */}
-            <div className="absolute bottom-4 left-0 right-0 text-center opacity-0 hover:opacity-100 transition-opacity pointer-events-none">
-                <span className="text-[10px] text-gray-300 pointer-events-auto cursor-pointer hover:underline">Service Agreement & Data Policy</span>
             </div>
           </motion.div>
         </div>
