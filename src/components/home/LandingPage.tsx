@@ -10,69 +10,69 @@ const translations = {
   zh: {
     nav: { home: '首页', features: '特性', company: '公司', pricing: '定价', signup: '立即加入' },
     hero: {
-      badge: '企业级 AI 数据交易平台',
-      rating: '超过 2700+ 卖家评分为 4.9/5',
-      title: '让您的数据，\n产生商业价值。',
-      desc: '全球领先的高质量 AI 训练数据集交易平台。自动模型评估定价、严苛的隐私脱敏、直接对接全球大模型企业采购需求。',
-      cta: '开始售卖数据',
-      explore: '探索市场'
+      badge: '全球领先的聊天数据交易平台',
+      rating: '已帮助 3500+ 位卖家变现',
+      title: '卖掉您的聊天记录，\n让数据产生收益。',
+      desc: '加入全球最大的聊天数据市场。我们已经帮助用户卖出了超过 12,000,000 条对话。AI 自动脱敏、深度价值评估、现金直接结算。',
+      cta: '立即卖数据变现',
+      explore: '查看成交案例'
     },
     features: [
       {
-        title: 'AI 自动估值',
-        desc: '基于 DeepSeek-v4 的多维分析，自动评估数据的逻辑深度和复杂度，瞬间给出公平的市场报价。',
+        title: '聊天记录变现',
+        desc: '将您的聊天导出文件（JSON/CSV）转化为现金。DeepSeek-v4 会自动评估对话的质量、逻辑深度与商业价值。',
         icon: Database,
         color: 'bg-blue-600'
       },
       {
-        title: '隐私安全脱敏',
-        desc: '零隐私泄露风险。我们的流水线会自动识别并剔除所有敏感个人信息（PII），确保数据合规上市。',
+        title: '银行级脱敏',
+        desc: '隐私高于一切。我们的 AI 会自动识别并剔除姓名、电话、地址等所有 PII 信息，确保您的隐私 100% 安全。',
         icon: Lock,
         color: 'bg-slate-900'
       },
       {
-        title: '企业直接支付',
-        desc: '直接面向全球大模型企业。无需 Stripe 账户，支持通过实体支票或银行转账直接将收益寄送至您的地址。',
+        title: '现金直接结算',
+        desc: '成交后收益直接进入您的钱包。支持全球银行转账或邮寄实体支票，无需复杂的 Stripe 账户即可收款。',
         icon: Zap,
         color: 'bg-emerald-600'
       }
     ],
-    footer: '受全球领先的技术公司信赖',
-    mobileCta: '创建账号开始赚钱',
+    footer: '已售出 12,000,000+ 条高质量对话数据',
+    mobileCta: '注册并开始变现',
     toggle: 'English'
   },
   en: {
     nav: { home: 'Home', features: 'Features', company: 'Company', pricing: 'Pricing', signup: 'Sign Up' },
     hero: {
-      badge: 'Enterprise-Grade AI Data Marketplace',
-      rating: 'Rated 4.9/5 by 2700+ sellers',
-      title: 'Turn your Data,\ninto AI Gold.',
-      desc: 'The premier platform for high-quality AI training datasets. Automated valuation, guaranteed PII sanitization, and direct enterprise demand.',
-      cta: 'Start Selling Data',
-      explore: 'Explore Marketplace'
+      badge: 'World\'s #1 Chat Data Marketplace',
+      rating: 'Trusted by 3500+ Successful Sellers',
+      title: 'Monetize Your Chat,\nTurn Data into Cash.',
+      desc: 'Join the world\'s leading chat data exchange. We\'ve helped sellers monetize over 12,000,000 conversations. Auto-sanitized, AI-priced, and paid in cash.',
+      cta: 'Start Selling Now',
+      explore: 'View Recent Sales'
     },
     features: [
       {
-        title: 'AI Valuation',
-        desc: 'DeepSeek-powered analysis evaluates logical depth and complexity to assign a fair market value instantly.',
+        title: 'Monetize History',
+        desc: 'Turn your chat exports (JSON/CSV) into income. Our AI evaluates conversational quality and logical depth for instant valuation.',
         icon: Database,
         color: 'bg-blue-600'
       },
       {
-        title: 'Privacy First',
-        desc: 'Automated entity redaction and PII removal ensures your data remains compliant and secure before listing.',
+        title: 'Bank-Level Privacy',
+        desc: 'Privacy first. Our pipeline automatically redacts names, phones, and PII, ensuring your identity remains 100% anonymous.',
         icon: Lock,
         color: 'bg-slate-900'
       },
       {
         title: 'Direct Payouts',
-        desc: 'Sell directly to AI labs. No Stripe needed. Receive payment via physical mailed checks or direct bank transfer.',
+        desc: 'Earn real cash. No Stripe needed. Withdraw your earnings via global bank transfer or physical mailed checks.',
         icon: Zap,
         color: 'bg-emerald-600'
       }
     ],
-    footer: 'Trusted by Top-tier product companies',
-    mobileCta: 'Create Account to Start',
+    footer: 'Over 12,000,000+ Chat Messages Sold',
+    mobileCta: 'Sign Up to Start Selling',
     toggle: '中文'
   }
 };
@@ -174,11 +174,12 @@ export function LandingPage() {
         </div>
 
         {/* Hero Right: Glassy Orb Video - Optimized for White Background */}
-        <div className="relative z-0 order-1 lg:order-2 flex justify-center items-center h-[200px] md:h-[600px] lg:h-[700px] mt-4 lg:mt-0">
-           {/* Mobile-specific: background glow behind video */}
-           <div className="absolute w-[220px] h-[220px] bg-blue-500/10 rounded-full blur-[50px] lg:hidden"></div>
+        <div className="relative z-0 order-1 lg:order-2 flex justify-center items-center h-[240px] md:h-[600px] lg:h-[700px] mt-2 md:mt-0">
+           {/* White Light/Glow Container behind the orb */}
+           <div className="absolute w-[240px] h-[240px] md:w-[500px] md:h-[500px] bg-white rounded-full shadow-[0_0_120px_60px_rgba(255,255,255,1)] z-0"></div>
+           <div className="absolute w-[180px] h-[180px] md:w-[400px] md:h-[400px] bg-blue-400/10 rounded-full blur-[60px] z-0"></div>
 
-           <div className="absolute w-full h-full lg:w-[140%] lg:h-[140%] pointer-events-none flex items-center justify-center overflow-hidden">
+           <div className="absolute w-full h-full lg:w-[140%] lg:h-[140%] pointer-events-none flex items-center justify-center overflow-hidden z-10">
               <div className="relative w-full h-full flex items-center justify-center">
                 <video 
                   autoPlay 
@@ -186,10 +187,10 @@ export function LandingPage() {
                   muted 
                   playsInline 
                   style={{
-                    maskImage: 'radial-gradient(circle, rgba(0,0,0,1) 15%, rgba(0,0,0,0) 55%)',
-                    WebkitMaskImage: 'radial-gradient(circle, rgba(0,0,0,1) 15%, rgba(0,0,0,0) 55%)'
+                    maskImage: 'radial-gradient(circle, rgba(0,0,0,1) 5%, rgba(0,0,0,0) 45%)',
+                    WebkitMaskImage: 'radial-gradient(circle, rgba(0,0,0,1) 5%, rgba(0,0,0,0) 45%)'
                   }}
-                  className="w-full h-full object-contain mix-blend-screen scale-[1.0] md:scale-[1.1] lg:scale-[1.5] filter hue-rotate-[-55deg] saturate-[300%] brightness-[1.2] contrast-[1.8] opacity-100"
+                  className="w-full h-full object-contain mix-blend-screen scale-[0.8] md:scale-[1.1] lg:scale-[1.5] filter hue-rotate-[-55deg] saturate-[300%] brightness-[1.3] contrast-[2.5] opacity-100"
                 >
                   <source src="https://future.co/images/homepage/glassy-orb/orb-purple.webm" type="video/webm" />
                 </video>
