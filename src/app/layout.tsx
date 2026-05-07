@@ -4,6 +4,7 @@ import { Header } from '@/components/layout/Header';
 import { UploadModal } from '@/components/modals/UploadModal';
 import { AuthModal } from '@/components/modals/AuthModal';
 import { WithdrawModal } from '@/components/modals/WithdrawModal';
+import { MobileRestriction } from '@/components/layout/MobileRestriction';
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -23,6 +24,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.className} bg-[#f4f7f6] text-gray-900`} suppressHydrationWarning>
+        <MobileRestriction />
         <Suspense fallback={<div>Loading...</div>}>
           <UploadModal />
           <AuthModal />
