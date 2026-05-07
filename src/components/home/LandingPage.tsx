@@ -174,11 +174,11 @@ export function LandingPage() {
         </div>
 
         {/* Hero Right: Glassy Orb Video - Optimized for White Background */}
-        <div className="relative z-0 order-1 lg:order-2 flex justify-center items-center h-[220px] md:h-[600px] lg:h-[700px]">
+        <div className="relative z-0 order-1 lg:order-2 flex justify-center items-center h-[200px] md:h-[600px] lg:h-[700px] mt-4 lg:mt-0">
            {/* Mobile-specific: background glow behind video */}
-           <div className="absolute w-[200px] h-[200px] bg-blue-400/20 rounded-full blur-[60px] lg:hidden"></div>
+           <div className="absolute w-[220px] h-[220px] bg-blue-500/10 rounded-full blur-[50px] lg:hidden"></div>
 
-           <div className="absolute w-full h-full lg:w-[140%] lg:h-[140%] pointer-events-none flex items-center justify-center">
+           <div className="absolute w-full h-full lg:w-[140%] lg:h-[140%] pointer-events-none flex items-center justify-center overflow-hidden">
               <div className="relative w-full h-full flex items-center justify-center">
                 <video 
                   autoPlay 
@@ -186,10 +186,10 @@ export function LandingPage() {
                   muted 
                   playsInline 
                   style={{
-                    maskImage: 'radial-gradient(circle, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 70%)',
-                    WebkitMaskImage: 'radial-gradient(circle, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 70%)'
+                    maskImage: 'radial-gradient(circle, rgba(0,0,0,1) 15%, rgba(0,0,0,0) 55%)',
+                    WebkitMaskImage: 'radial-gradient(circle, rgba(0,0,0,1) 15%, rgba(0,0,0,0) 55%)'
                   }}
-                  className="w-full h-full object-contain mix-blend-screen scale-[0.85] md:scale-[1.1] lg:scale-[1.5] filter hue-rotate-[-55deg] saturate-[280%] brightness-[1.1] contrast-[1.1] opacity-90 lg:opacity-100"
+                  className="w-full h-full object-contain mix-blend-screen scale-[1.0] md:scale-[1.1] lg:scale-[1.5] filter hue-rotate-[-55deg] saturate-[300%] brightness-[1.2] contrast-[1.8] opacity-100"
                 >
                   <source src="https://future.co/images/homepage/glassy-orb/orb-purple.webm" type="video/webm" />
                 </video>
