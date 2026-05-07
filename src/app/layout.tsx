@@ -32,9 +32,9 @@ export default function RootLayout({
         </Suspense>
         <div className="flex min-h-screen">
           <Sidebar />
-          <div className="flex-1 ml-[260px] flex flex-col">
+          <div className="flex-1 flex flex-col lg:ml-[260px] w-full">
             <Header />
-            <main className="flex-1 px-8 py-6 overflow-y-auto">
+            <main className="flex-1 px-4 md:px-8 py-6 overflow-y-auto">
               {children}
             </main>
           </div>

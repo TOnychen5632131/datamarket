@@ -8,8 +8,12 @@ export async function Header() {
   const { data: { user } } = await supabase.auth.getUser();
 
   return (
-    <header className="h-[72px] border-b border-gray-100 bg-white flex items-center justify-between px-8 sticky top-0 z-30">
-      <div className="flex-1 max-w-[400px] relative">
+    <header className="h-[72px] border-b border-gray-100 bg-white flex items-center justify-between px-4 md:px-8 sticky top-0 z-30">
+      <div className="lg:hidden flex items-center gap-2 mr-4">
+        <div className="w-6 h-6 bg-blue-600 rounded-[4px] rotate-45 transform"></div>
+        <span className="font-bold text-gray-900 text-[16px] tracking-tight">DataMarket</span>
+      </div>
+      <div className="flex-1 max-w-[400px] relative hidden md:block">
         <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400" />
         <input 
           type="text" 

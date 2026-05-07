@@ -27,7 +27,7 @@ export function Sidebar() {
   };
 
   return (
-    <aside className="w-[260px] border-r border-gray-100 bg-[#fbfcff] h-screen fixed left-0 top-0 flex flex-col p-6 z-40">
+    <aside className="hidden lg:flex w-[260px] border-r border-gray-100 bg-[#fbfcff] h-screen fixed left-0 top-0 flex-col p-6 z-40">
       <div className="flex items-center gap-3 mb-10 pl-2">
         <div className="relative flex items-center justify-center">
           {/* Replicating the layered diamonds logo */}
