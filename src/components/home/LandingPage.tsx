@@ -1,121 +1,119 @@
 'use client';
 
-import { Database, Shield, DollarSign, ArrowRight, CheckCircle2, Zap, Globe, Lock } from 'lucide-react';
+import { ArrowRight, Star, Globe, Database, Shield, Zap, LayoutGrid } from 'lucide-react';
 import Link from 'next/link';
 
 export function LandingPage() {
   return (
-    <div className="min-h-screen bg-white flex flex-col items-center relative overflow-hidden">
+    <div className="min-h-screen bg-white font-sans antialiased overflow-x-hidden selection:bg-blue-100 selection:text-blue-900">
       
-      {/* Refined Blue Background Accents (No Purple) */}
-      <div className="absolute top-[-15%] right-[-10%] w-[600px] h-[600px] bg-blue-50 rounded-full blur-[120px] pointer-events-none opacity-60"></div>
-      <div className="absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] bg-slate-50 rounded-full blur-[100px] pointer-events-none opacity-60"></div>
-
-      {/* Hero Section */}
-      <div className="z-10 text-center max-w-4xl px-6 pt-20 md:pt-32 pb-16">
-        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-50 border border-blue-100 text-blue-700 text-[12px] font-bold mb-8 animate-fade-in">
-          <span className="w-2 h-2 rounded-full bg-blue-600 animate-pulse"></span>
-          Enterprise-Grade AI Data Marketplace
-        </div>
-
-        <h1 className="text-4xl md:text-7xl font-black text-slate-900 tracking-tight leading-[1.05] mb-8">
-          Turn your data into <br/>
-          <span className="text-blue-600">Institutional Value.</span>
-        </h1>
-        
-        <p className="text-[16px] md:text-[18px] text-slate-500 mb-10 max-w-2xl mx-auto leading-relaxed font-medium">
-          The premier platform for high-quality AI training datasets. Automated valuation, 
-          guaranteed PII sanitization, and direct enterprise demand.
-        </p>
-
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-20">
-          <Link 
-            href="?login=true" 
-            scroll={false} 
-            className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white px-10 py-4 rounded-2xl text-[16px] font-bold transition-all shadow-xl shadow-blue-100 hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-2"
-          >
-            Start Selling <ArrowRight className="w-5 h-5" />
-          </Link>
-          <button 
-            onClick={() => {
-              const el = document.getElementById('marketplace-preview');
-              if (el) el.scrollIntoView({ behavior: 'smooth' });
-              else window.location.href = '?login=true';
-            }}
-            className="w-full sm:w-auto bg-white border border-slate-200 text-slate-700 px-10 py-4 rounded-2xl text-[16px] font-bold transition-all hover:bg-slate-50 flex items-center justify-center gap-2"
-          >
-            View Marketplace
-          </button>
-        </div>
-
-        {/* Trust Badges - Mobile Responsive Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 opacity-40 grayscale hover:grayscale-0 transition-all duration-700">
-           <div className="flex items-center justify-center gap-2 font-bold text-slate-800">
-             <Shield className="w-5 h-5" /> SECURE
-           </div>
-           <div className="flex items-center justify-center gap-2 font-bold text-slate-800">
-             <CheckCircle2 className="w-5 h-5" /> VERIFIED
-           </div>
-           <div className="flex items-center justify-center gap-2 font-bold text-slate-800">
-             <Zap className="w-5 h-5" /> INSTANT
-           </div>
-           <div className="flex items-center justify-center gap-2 font-bold text-slate-800">
-             <Globe className="w-5 h-5" /> GLOBAL
-           </div>
-        </div>
+      {/* 1. Background Layered Gradient Glows */}
+      <div className="absolute top-0 left-0 w-full h-screen overflow-hidden pointer-events-none">
+        <div className="absolute top-[-200px] left-[-100px] w-[800px] h-[800px] rounded-full opacity-40 blur-[120px] bg-[#60B1FF]"></div>
+        <div className="absolute top-[-100px] left-[200px] w-[600px] h-[600px] rounded-full opacity-30 blur-[100px] bg-[#319AFF]"></div>
       </div>
 
-      {/* Feature Section */}
-      <div className="w-full max-w-6xl px-6 py-20">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="group p-8 rounded-[32px] bg-slate-50 border border-slate-100 hover:bg-white hover:shadow-2xl hover:shadow-blue-100 transition-all duration-500">
-            <div className="w-14 h-14 bg-blue-600 rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-blue-200">
-               <Database className="w-7 h-7 text-white" />
-            </div>
-            <h3 className="font-black text-slate-900 text-[20px] mb-3">AI Valuation</h3>
-            <p className="text-[14px] text-slate-500 leading-relaxed font-medium">
-              DeepSeek-powered analysis evaluates logical depth and complexity to assign fair market value instantly.
-            </p>
-          </div>
-
-          <div className="group p-8 rounded-[32px] bg-slate-50 border border-slate-100 hover:bg-white hover:shadow-2xl hover:shadow-blue-100 transition-all duration-500">
-            <div className="w-14 h-14 bg-slate-900 rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-slate-200">
-               <Lock className="w-7 h-7 text-white" />
-            </div>
-            <h3 className="font-black text-slate-900 text-[20px] mb-3">Privacy First</h3>
-            <p className="text-[14px] text-slate-500 leading-relaxed font-medium">
-              Automated entity redaction and PII removal ensures your data remains compliant and secure before listing.
-            </p>
-          </div>
-
-          <div className="group p-8 rounded-[32px] bg-slate-50 border border-slate-100 hover:bg-white hover:shadow-2xl hover:shadow-blue-100 transition-all duration-500">
-            <div className="w-14 h-14 bg-emerald-600 rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-emerald-200">
-               <DollarSign className="w-7 h-7 text-white" />
-            </div>
-            <h3 className="font-black text-slate-900 text-[20px] mb-3">Direct Payouts</h3>
-            <p className="text-[14px] text-slate-500 leading-relaxed font-medium">
-              Sell to enterprise buyers and receive payment via physical mailed checks or bank transfer. No Stripe needed.
-            </p>
+      {/* 2. The "Strong Liquid Glass" Navbar */}
+      <nav className="fixed top-[30px] left-1/2 -translate-x-1/2 z-50 w-fit px-2 py-2 rounded-[16px] backdrop-blur-[50px] bg-white/30 border border-black/10 shadow-[inset_0px_4px_4px_0px_rgba(255,255,255,0.25)] flex items-center gap-8">
+        <div className="flex items-center gap-6 px-4">
+          <span className="text-[18px] font-brand font-black tracking-tight text-slate-900">DataMarket</span>
+          <div className="hidden md:flex items-center gap-6 text-[13px] font-medium text-slate-600">
+            <Link href="/" className="hover:text-blue-600 transition-colors">Home</Link>
+            <Link href="#features" className="hover:text-blue-600 transition-colors">Features</Link>
+            <Link href="#company" className="hover:text-blue-600 transition-colors">Company</Link>
+            <Link href="#pricing" className="hover:text-blue-600 transition-colors">Pricing</Link>
           </div>
         </div>
-      </div>
-
-      {/* Mobile CTA (Floating for mobile) */}
-      <div className="md:hidden fixed bottom-6 left-6 right-6 z-40">
         <Link 
           href="?login=true" 
           scroll={false}
-          className="w-full bg-blue-600 text-white py-4 rounded-2xl font-bold flex items-center justify-center gap-2 shadow-2xl"
+          className="bg-white/40 hover:bg-white/60 text-slate-900 border border-black/5 px-5 py-2 rounded-[12px] text-[13px] font-bold transition-all flex items-center gap-2"
         >
-          Create Account to Start
+          Sign Up <ArrowRight className="w-4 h-4" />
+        </Link>
+      </nav>
+
+      {/* 3. Hero Section */}
+      <section className="relative pt-44 md:pt-56 pb-20 px-6 max-w-[1600px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        
+        {/* Hero Left Content */}
+        <div className="z-10 order-2 lg:order-1 text-center lg:text-left">
+          {/* Social Proof Badge */}
+          <div className="inline-flex items-center gap-2 px-3 py-1 bg-slate-50 border border-slate-100 rounded-full mb-8">
+            <div className="flex -space-x-1">
+               {[1,2,3,4,5].map(i => (
+                 <Star key={i} className="w-3.5 h-3.5 fill-[#FF801E] text-[#FF801E]" />
+               ))}
+            </div>
+            <span className="text-[12px] font-bold text-slate-600">Rated 4.9/5 by 2700+ customers</span>
+          </div>
+
+          <h1 className="text-[48px] md:text-[75px] font-brand font-black text-slate-900 leading-[1.05] tracking-[-2px] mb-8">
+            Work smarter, <br className="hidden md:block"/> achieve faster
+          </h1>
+
+          <p className="text-[18px] text-slate-500 leading-relaxed tracking-[-1px] max-w-lg mx-auto lg:mx-0 mb-10 font-medium">
+            Effortlessly manage your AI datasets, collaborate with your team, and achieve your goals with our intuitive data marketplace tool.
+          </p>
+
+          <div className="flex items-center justify-center lg:justify-start">
+             <Link 
+               href="?login=true" 
+               scroll={false}
+               className="group relative bg-[#0084ff]/80 backdrop-blur-[2px] hover:bg-[#0084ff] text-white px-10 py-5 rounded-[16px] text-[16px] font-bold transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] shadow-[inset_0px_4px_4px_0px_rgba(255,255,255,0.35)] flex items-center gap-3"
+             >
+               Get Started Now
+               <div className="w-6 h-6 bg-white rounded-full flex items-center justify-center text-blue-600 group-hover:translate-x-1 transition-transform">
+                 <ArrowRight className="w-4 h-4" />
+               </div>
+             </Link>
+          </div>
+        </div>
+
+        {/* Hero Right: Glassy Orb Video */}
+        <div className="relative z-0 order-1 lg:order-2 flex justify-center items-center h-[400px] md:h-[600px]">
+           <div className="absolute w-[120%] h-[120%] pointer-events-none">
+              <video 
+                autoPlay 
+                loop 
+                muted 
+                playsInline 
+                className="w-full h-full object-contain mix-blend-screen scale-[1.25] filter hue-rotate-[-55deg] saturate-[250%] brightness-[1.2] contrast-[1.1]"
+              >
+                <source src="https://future.co/images/homepage/glassy-orb/orb-purple.webm" type="video/webm" />
+              </video>
+           </div>
+        </div>
+      </section>
+
+      {/* 4. Footer Logos */}
+      <section className="py-20 border-t border-slate-50 bg-white/50">
+        <div className="max-w-[1600px] mx-auto px-6 text-center">
+          <p className="text-[14px] font-bold text-slate-400 uppercase tracking-widest mb-12">
+            Trusted by Top-tier product companies
+          </p>
+          <div className="flex flex-wrap items-center justify-center gap-x-[100px] gap-y-12 grayscale opacity-30 hover:opacity-60 transition-opacity duration-700">
+             {/* Grayscale SVG Placeholders */}
+             <div className="flex items-center gap-2 font-black text-2xl"><Globe className="w-8 h-8" /> GLOBEX</div>
+             <div className="flex items-center gap-2 font-black text-2xl"><Shield className="w-8 h-8" /> SHIELD</div>
+             <div className="flex items-center gap-2 font-black text-2xl"><Zap className="w-8 h-8" /> VOLT</div>
+             <div className="flex items-center gap-2 font-black text-2xl"><Database className="w-8 h-8" /> DATACO</div>
+             <div className="flex items-center gap-2 font-black text-2xl"><LayoutGrid className="w-8 h-8" /> GRID</div>
+          </div>
+        </div>
+      </section>
+
+      {/* Floating Mobile CTA */}
+      <div className="lg:hidden fixed bottom-6 left-6 right-6 z-40">
+        <Link 
+          href="?login=true" 
+          scroll={false}
+          className="w-full bg-[#0084ff] text-white py-4 rounded-[16px] font-bold flex items-center justify-center gap-2 shadow-2xl"
+        >
+          Get Started Now
         </Link>
       </div>
 
-      <footer className="w-full py-12 border-t border-slate-50 text-center">
-         <p className="text-[12px] font-bold text-slate-400 uppercase tracking-widest">
-           © 2026 DATAMARKET INC. PROXIMITY TO EXCELLENCE.
-         </p>
-      </footer>
     </div>
   );
 }

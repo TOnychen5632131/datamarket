@@ -7,10 +7,11 @@ import { AuthModal } from '@/components/modals/AuthModal';
 import { WithdrawModal } from '@/components/modals/WithdrawModal';
 import { MobileRestriction } from '@/components/layout/MobileRestriction';
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Fustat } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"], variable: '--font-inter' });
+const fustat = Fustat({ subsets: ["latin"], variable: '--font-fustat' });
 
 export const metadata: Metadata = {
   title: "DataMarket - AI Training Data",
@@ -27,7 +28,7 @@ export default async function RootLayout({
 
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.className} bg-[#f4f7f6] text-gray-900`} suppressHydrationWarning>
+      <body className={`${inter.variable} ${fustat.variable} font-sans bg-[#f4f7f6] text-gray-900`} suppressHydrationWarning>
         <MobileRestriction isAuthenticated={!!user} />
         <Suspense fallback={<div>Loading...</div>}>
           <UploadModal />
