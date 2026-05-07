@@ -173,21 +173,30 @@ export function LandingPage() {
           </div>
         </div>
 
-        {/* Hero Right: Glassy Orb Video */}
-        <div className="relative z-0 order-1 lg:order-2 flex justify-center items-center h-[350px] md:h-[600px]">
-           <div className="absolute w-[120%] h-[120%] pointer-events-none">
-              <video 
-                autoPlay 
-                loop 
-                muted 
-                playsInline 
-                className="w-full h-full object-contain mix-blend-screen scale-[1.25] filter hue-rotate-[-55deg] saturate-[250%] brightness-[1.2] contrast-[1.1]"
-              >
-                <source src="https://future.co/images/homepage/glassy-orb/orb-purple.webm" type="video/webm" />
-              </video>
+        {/* Hero Right: Glassy Orb Video - Optimized for White Background */}
+        <div className="relative z-0 order-1 lg:order-2 flex justify-center items-center h-[300px] md:h-[600px] lg:h-[700px]">
+           {/* Mobile-specific: background glow behind video */}
+           <div className="absolute w-[300px] h-[300px] bg-blue-400/20 rounded-full blur-[80px] lg:hidden"></div>
+
+           <div className="absolute w-[140%] h-[140%] pointer-events-none flex items-center justify-center">
+              <div className="relative w-full h-full flex items-center justify-center">
+                <video 
+                  autoPlay 
+                  loop 
+                  muted 
+                  playsInline 
+                  style={{
+                    maskImage: 'radial-gradient(circle, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 70%)',
+                    WebkitMaskImage: 'radial-gradient(circle, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 70%)'
+                  }}
+                  className="w-full h-full object-contain mix-blend-screen scale-[1.3] lg:scale-[1.5] filter hue-rotate-[-55deg] saturate-[280%] brightness-[1.1] contrast-[1.1] opacity-90 lg:opacity-100"
+                >
+                  <source src="https://future.co/images/homepage/glassy-orb/orb-purple.webm" type="video/webm" />
+                </video>
+              </div>
            </div>
         </div>
-      </section>
+        </section>
 
       {/* 4. Features Section */}
       <section id="features" className="max-w-[1600px] mx-auto px-6 py-24 border-t border-slate-50">
